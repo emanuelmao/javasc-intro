@@ -1,41 +1,49 @@
 var titulo = document.querySelector('.titulo');
 titulo.textContent = "Aparecida Nutricionista";
 
-var paciente = document.querySelector("#primeiro-paciente");
+var pacientes = document.querySelectorAll(".paciente");
+console.log(pacientes);
+for (i=0;i <= pacientes.length; i++){
 
-var tdPeso = paciente.querySelector(".info-peso");
-var peso = tdPeso.textContent;
+  var paciente = pacientes[i];
 
-var tdAltura = paciente.querySelector(".info-altura");
-var altura = tdAltura.textContent;
+  var tdPeso = paciente.querySelector(".info-peso");
+  var peso = tdPeso.textContent;
 
-var tdImc = paciente.querySelector(".info-imc");
+  var tdAltura = paciente.querySelector(".info-altura");
+  var altura = tdAltura.textContent;
 
-var alturaEhValida = true;
-var pesoEhValido = true;
+  var tdImc = paciente.querySelector(".info-imc");
+
+  var alturaEhValida = true;
+  var pesoEhValido = true;
 
 
-console.log(tdPeso);
-console.log(peso);
+  console.log(tdPeso);
+  console.log(peso);
 
-console.log(tdAltura);
-console.log(altura);
+  console.log(tdAltura);
+  console.log(altura);
 
-if (peso <= 0 || peso >= 1000) {
-    console.log("Peso inválido!");
-    pesoEhValido = false;
-    tdImc.textContent = "Peso inválido!";
-}
+  if (peso <= 0 || peso >= 1000) {
+      console.log("Peso inválido!");
+      pesoEhValido = false;
+      tdImc.textContent = "Peso inválido!";
+      paciente.classList.add("paciente-invalido");
+  }
 
-if (altura <= 0 || altura >= 3.00){
-    console.log("Altura inválida!");
-    alturaEhValida = false;
-    tdImc.textContent = "Altura inválida!";
-}
+  if (altura <= 0 || altura >= 3.00){
+      console.log("Altura inválida!");
+      alturaEhValida = false;
+      tdImc.textContent = "Altura inválida!";
+      paciente.classList.add("paciente-invalido");
+  }
 
-if (alturaEhValida && pesoEhValido){
-    var imc = peso / (altura * altura);
-    tdImc.textContent = imc;
-}  else {
-    tdImc.textContent = "Altura e/ou peso inválidos!"
+  if (alturaEhValida && pesoEhValido){
+      var imc = peso / (altura * altura);
+      tdImc.textContent = imc.toFixed(2);
+  }  else {
+      tdImc.textContent = "Altura e/ou peso inválidos!"
+  }
+
 }
